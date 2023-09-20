@@ -9,7 +9,7 @@ const AUTHORIZATION_HEADER = `Bearer ${auth.ACCESS_TOKEN}`;
 
 // Default parameters for requests.
 const defaultParams = {
-  language: 'en-US',
+  language: 'uk', //'en-US',
 };
 
 /**
@@ -63,7 +63,7 @@ export const getTrending = async (currentPage = 1) => {
   const page =
     currentPage > 1 && currentPage < 501 ? { page: currentPage } : {};
   const params = { ...defaultParams, ...page };
-  return sendRequest('/trending/movie/day', params);
+  return sendRequest('/trending/movie/week', params);
 };
 
 /**
