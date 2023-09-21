@@ -1,13 +1,19 @@
 import { ListContainer } from './MoviesList.styled';
+
 import MovieItem from './MovieItem';
+import MovieEmpty from './MovieEmpty';
 
 function MoviesList({ movies }) {
-  return (
+  return movies.length ? (
     <ListContainer>
-      {movies.map(movie => {
-        return <MovieItem key={movie.id} item={movie} />;
+      {movies.map((movie, index) => {
+        return movie.id ? (
+          <MovieItem key={movie.id} item={movie} place={index + 1} />
+        ) : null;
       })}
     </ListContainer>
+  ) : (
+    <MovieEmpty />
   );
 }
 

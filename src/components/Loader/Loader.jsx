@@ -1,5 +1,11 @@
+import { Container, Spinner } from './Loader.styled';
+
 function Loader() {
-  return <div>Loading...</div>;
+  return (
+    <Container>
+      <Spinner />
+    </Container>
+  );
 }
 
 export default Loader;

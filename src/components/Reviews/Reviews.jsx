@@ -17,18 +17,21 @@ function Reviews() {
     getReviews();
   }, [movieId]);
 
-  useEffect(() => {
-    console.log(reviews);
-  }, [reviews]);
-
   if (!reviews) return;
   return (
-    <div>
-      {/* {credits.cast.map((actor, index) => {
-        if (index > 9) return null;
-        return <div key={actor.id}>{actor.name}</div>;
-      })} */}
-    </div>
+    <>
+      <h2>Огляди:</h2>
+      {reviews.length ? (
+        <div>
+          {reviews.results.map((review, index) => {
+            if (index > 9) return null;
+            return <p key={index}>{review}</p>;
+          })}
+        </div>
+      ) : (
+        <p>Нажаль оглядів не знайдено :(</p>
+      )}
+    </>
   );
 }
 

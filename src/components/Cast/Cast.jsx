@@ -1,7 +1,7 @@
 import * as API from '../../services/api';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Container } from './Cast.styled';
+import { Container, Title, CastList, CastItem } from './Cast.styled';
 
 function Cast() {
   const { movieId } = useParams();
@@ -21,10 +21,13 @@ function Cast() {
   if (!credits.cast) return;
   return (
     <Container>
-      {credits.cast.map((actor, index) => {
-        if (index > 9) return null;
-        return <div key={actor.id}>{actor.name}</div>;
-      })}
+      <Title>У ролях:</Title>
+      <CastList>
+        {credits.cast.map((actor, index) => {
+          if (index > 9) return null;
+          return <CastItem key={actor.id}>{actor.name}</CastItem>;
+        })}
+      </CastList>
     </Container>
   );
 }

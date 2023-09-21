@@ -15,17 +15,17 @@ function SharedLayout() {
       <Header>
         <Controls>
           <StyledLink to="/" end>
-            Home
+            Головна
           </StyledLink>
-          <StyledLink to="/movies">Movies</StyledLink>
+          <StyledLink to="/movies">Фільми</StyledLink>
         </Controls>
       </Header>
 
-      <Suspense fallback={<Loader />}>
-        <Main>
+      <Main>
+        <Suspense fallback={<Loader />}>
           <Outlet />
-        </Main>
-      </Suspense>
+        </Suspense>
+      </Main>
     </Container>
   );
 }

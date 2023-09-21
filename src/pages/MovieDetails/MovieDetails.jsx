@@ -1,16 +1,11 @@
 import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { useEffect, useState, Suspense, useRef } from 'react';
 import * as API from '../../services/api';
-import {
-  Containter,
-  BackLink,
-  BackLinkIcon,
-  BackLinkText,
-  CastLink,
-  ReviewsLink,
-} from './MovieDetails.styled';
+import { Containter } from './MovieDetails.styled';
 import DetailCard from 'components/DetailsCard';
 import Loader from 'components/Loader';
+import BackLink from 'components/BackLink';
+import DetailsControls from 'components/DetailsControls';
 
 const IMG_ORIGIN_URL = 'https://image.tmdb.org/t/p/original/';
 
@@ -40,16 +35,13 @@ function MovieDetails() {
 
   return (
     <Containter backImg={backgroundImgURL}>
-      <BackLink to={refbackLink.current}>
-        <BackLinkIcon />
-        <BackLinkText>Back</BackLinkText>
-      </BackLink>
-      <DetailCard movieInfo={movieDetails} />
-      <CastLink to={'cast'}>Cast</CastLink>
-      <ReviewsLink to={'reviews'}>Reviews</ReviewsLink>
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      <BackLink backRef={refbackLink.current} />
+      <DetailCard movieInfo={movieDetails}>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </DetailCard>
+      <DetailsControls />
     </Containter>
   );
 }
