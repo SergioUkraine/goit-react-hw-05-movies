@@ -1,5 +1,6 @@
 import { Container, PosterImg, Description, Inner } from './DetailsCard.styled';
 import noPosterImage from '../../images/poster.jpg';
+import PropTypes from 'prop-types';
 
 const imgBaseURL = 'https://image.tmdb.org/t/p/w500/';
 
@@ -37,5 +38,16 @@ function DetailsCard({ movieInfo, children }) {
     </Container>
   );
 }
+
+DetailsCard.propTypes = {
+  movieInfo: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+  }).isRequired,
+  children: PropTypes.node,
+};
 
 export default DetailsCard;

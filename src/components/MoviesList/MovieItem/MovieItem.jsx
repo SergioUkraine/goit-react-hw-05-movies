@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Item,
   ItemLink,
@@ -39,5 +41,15 @@ function MovieItem({ item, place }) {
     </Item>
   );
 }
+
+MovieItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    poster_path: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+  }).isRequired,
+  place: PropTypes.number.isRequired,
+};
 
 export default MovieItem;

@@ -11,7 +11,7 @@ const IMG_ORIGIN_URL = 'https://image.tmdb.org/t/p/original/';
 
 function MovieDetails() {
   const { movieId } = useParams();
-  const [movieDetails, setmovieDetails] = useState([]);
+  const [movieDetails, setmovieDetails] = useState({});
 
   const location = useLocation();
   const backLink = location.state?.from ?? '/';

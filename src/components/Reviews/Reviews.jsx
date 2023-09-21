@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 
 function Reviews() {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState({});
+  const [reviews, setReviews] = useState([]);
   useEffect(() => {
     async function getReviews() {
       try {
         const response = await API.getMovieReviewsById(movieId);
-        setReviews(response);
+        setReviews(response.results);
       } catch (error) {
         console.log(error);
       }
@@ -23,7 +23,7 @@ function Reviews() {
       <h2>Огляди:</h2>
       {reviews.length ? (
         <div>
-          {reviews.results.map((review, index) => {
+          {reviews.map((review, index) => {
             if (index > 9) return null;
             return <p key={index}>{review}</p>;
           })}

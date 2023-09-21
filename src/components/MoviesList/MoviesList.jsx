@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { ListContainer } from './MoviesList.styled';
 
 import MovieItem from './MovieItem';
@@ -16,5 +18,16 @@ function MoviesList({ movies }) {
     <MovieEmpty />
   );
 }
+
+MoviesList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      vote_average: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
 
 export default MoviesList;

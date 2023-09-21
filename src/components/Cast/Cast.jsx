@@ -5,12 +5,12 @@ import { Container, Title, CastList, CastItem } from './Cast.styled';
 
 function Cast() {
   const { movieId } = useParams();
-  const [credits, setCredits] = useState({});
+  const [credits, setCredits] = useState([]);
   useEffect(() => {
     async function getMovieCast() {
       try {
         const response = await API.getMovieCreditsById(movieId);
-        setCredits(response);
+        setCredits(response.cast);
       } catch (error) {
         console.log(error);
       }
@@ -18,16 +18,20 @@ function Cast() {
     getMovieCast();
   }, [movieId]);
 
-  if (!credits.cast) return;
+  if (!credits) return;
   return (
     <Container>
       <Title>У ролях:</Title>
-      <CastList>
-        {credits.cast.map((actor, index) => {
-          if (index > 9) return null;
-          return <CastItem key={actor.id}>{actor.name}</CastItem>;
-        })}
-      </CastList>
+      {credits.length ? (
+        <CastList>
+          {credits.map((actor, index) => {
+            if (index > 9) return null;
+            return <CastItem key={actor.id}>{actor.name}</CastItem>;
+          })}
+        </CastList>
+      ) : (
+        <p>Нажаль акторського складу знайдено :(</p>
+      )}
     </Container>
   );
 }
