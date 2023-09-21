@@ -1,6 +1,7 @@
 import * as API from '../../services/api';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Container } from './Movies.styled';
 import MoviesList from 'components/MoviesList';
 import SearchBar from 'components/SearchBar';
 import Loader from 'components/Loader';
@@ -34,11 +35,11 @@ function Movies() {
   };
 
   return (
-    <div>
+    <Container>
       <SearchBar handleChange={handleChangeInput} setValue={searchQuery} />
       {movies ? <MoviesList movies={movies} /> : null}
       {isLoading ? <Loader /> : null}
-    </div>
+    </Container>
   );
 }
 export default Movies;
